@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Doctor</h2>
+<div class="row">
+  <div class=" col-md-offset-1 col-md-4">
+    <label> Name : </label>
+    <label> {{data['data'].name}} </label>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class=" col-md-offset-1 col-md-4">
+    <label> Email : </label>
+    <label> {{data['data'].email}} </label>
+  </div>
+</div>
+
+<div class="row">
+  <div class=" col-md-offset-1 col-md-4">
+    <label> Address : </label>
+    <label> {{data['data'].address}} </label>
+  </div>
+</div>
+
+<div class="row" style="margin-top: 50px;">
+  <div class=" col-md-offset-1 col-md-2">
+    <label> Appointent Start : </label>
+  </div>
+  <div class="col-md-4">
+    <angular2-date-picker [(ngModel)]="date"
+     [settings]="settings"
+     (ngModelChange)="checkAvailability($event)"></angular2-date-picker>
+  </div>
+
+</div>
+
+<div class="row" style="margin-top: 50px;">
+  <div class=" col-md-offset-1 col-md-2">
+    <label> Complaint : </label>
+  </div>
+  <div class="col-md-4">
+    <input type="text" [(ngModel)]="complaint" class="form-control">
+  </div>
+</div>
+<br>
+<br>
+<br>
+<div class="row">
+  <div class=" col-md-offset-6 col-md-4">
+    <button class="btn-success" style="width: 50px;" mat-raised-button (click)="saveAppointment()" [disabled]="!isValidTime">Save</button>
+  </div>
+</div>

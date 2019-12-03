@@ -1,0 +1,110 @@
+<h2>SignUp form</h2>
+
+<form [formGroup]="form" #userInformation (ngSubmit)="userForm(userInformation)">
+
+    <div class="row">
+        <div class=" col-md-offset-1 col-md-4">
+            <label for="fullName"> Name </label>
+            <input formControlName="fullName" class="form-control" type="text">
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class=" col-md-offset-1 col-md-4">
+            <label for="email"> Email </label>
+            <input formControlName="email" class="form-control" type="text">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class=" col-md-offset-1 col-md-4">
+            <label for="address"> Address </label>
+            <input formControlName="address" class="form-control" type="text">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class=" col-md-offset-1 col-md-4">
+            <label for="userName"> User Name </label>
+            <input formControlName="userName" class="form-control" type="text">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class=" col-md-offset-1 col-md-4">
+            <label for="password"> Password </label>
+            <input formControlName="password" class="form-control" type="password">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class=" col-md-offset-1 col-md-4">
+            <label for="confirmPassword"> Confirm Password </label>
+            <input formControlName="confirmPassword" class="form-control" type="password">
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class=" col-md-offset-1 col-md-4">
+            <label for="role"> Role </label>
+            <select formControlName="profile" formControlName="role" class="form-control"
+                (input)="findSpecialization($event.target.value)">
+                <option [ngValue]="null" disabled>Choose your Type</option>
+                <option *ngFor="let type of types" [ngValue]="type">
+                    {{ type }}
+                </option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="row" *ngIf="isDoctor">
+        <div class=" col-md-offset-1 col-md-4">
+            <label for="specialization"> Specialization </label>
+            <select formControlName="profile" formControlName="specialization" class="form-control">
+                <option [ngValue]="null" disabled>Choose your specialization</option>
+                <option *ngFor="let type of specializations" [ngValue]="type">
+                    {{ type }}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="isDoctor">
+        <div class=" col-md-offset-1 col-md-4">
+            <label for="startWork"> Start At </label>
+            <input formControlName="startWork" class="form-control" type="number">
+        </div>
+    </div>
+
+    <div class="row" *ngIf="isDoctor">
+        <div class=" col-md-offset-1 col-md-4">
+            <label for="endWork"> End At </label>
+            <input formControlName="endWork" class="form-control" type="number">
+        </div>
+    </div>
+
+    <div class="row" *ngIf="isDoctor">
+        <div class=" col-md-offset-1 col-md-4">
+            <label for="ticketPrice"> Ticket Price </label>
+            <input formControlName="ticketPrice" class="form-control" type="number">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class=" col-md-offset-1 col-md-4">
+            <label for="age"> Age </label>
+            <input formControlName="age" class="form-control" type="number">
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 40px;">
+        <div class="col-md-offset-1 col-md-4">
+            <button class="btn btn-md btn-primary btn-style">Save</button>
+        </div>
+    </div>
+
+</form>
