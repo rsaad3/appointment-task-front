@@ -13,8 +13,13 @@ export class SignupComponent implements OnInit {
 
   private user = new User();
   isDoctor = false;
+  //user type
   types = ['doctor' , 'patient'];
+ 
+  //doctor type
   specializations = ['bones' , 'eyes' ,'heart','Physical therapy'];
+
+  //login form
   form = new FormGroup(
     {
       fullName: new FormControl('', Validators.required),
@@ -36,7 +41,7 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
-
+//call api to save user
   userForm(AdminInformation) {
     let pass = this.form.value.password;
     let confirmPass = this.form.value.confirmPassword;
@@ -71,6 +76,7 @@ export class SignupComponent implements OnInit {
 
   }
 
+  //show other user properties related to doctor 
   findSpecialization(event: string) {
     if(event.indexOf('doctor')>0){
       this.isDoctor = true;

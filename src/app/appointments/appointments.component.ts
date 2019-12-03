@@ -14,9 +14,9 @@ import { outputs } from '@syncfusion/ej2-angular-popups/src/dialog/dialog.compon
   styleUrls: ['./appointments.component.css']
 })
 export class AppointmentsComponent implements OnInit {
-  @Output() valueChange = new EventEmitter();
   appointments: {};
   timeLine: Vis.Timeline;
+  /*settings for doctor table */
   settings = {
     actions: false,
     columns: {
@@ -39,7 +39,7 @@ export class AppointmentsComponent implements OnInit {
       start: {
         title: 'Start At'
       }
-      ,end: {
+      , end: {
         title: 'End At'
       }
     }
@@ -52,9 +52,11 @@ export class AppointmentsComponent implements OnInit {
 
   ngOnInit() {
 
+    /*groups and items for time line */
     var groups = new DataSet();
     var items = new DataSet();
 
+    /*get doctor and thrie appointments then add doctors to groups and add their appointments to time line items  */
     this.userServic.getappointments().subscribe(
       response => {
         this.appointments = response;
@@ -62,8 +64,6 @@ export class AppointmentsComponent implements OnInit {
         for (let index in this.appointments) {
           console.log('element of ' + index + ' ' + this.appointments[index].name + ' ' + this.appointments[index].email);
           let groupContent = this.appointments[index].name + ' ' + this.appointments[index].email;
-          // this.userServic.allDcotors.push(this.appointments[index]);
-
           let elemet = {
             name: this.appointments[index].name, email: this.appointments[index].email, address: this.appointments[index].address
             , specialization: this.appointments[index].specialization, ticketPrice: this.appointments[index].ticketPrice, userName: this.appointments[index].user.userName,
@@ -87,7 +87,10 @@ export class AppointmentsComponent implements OnInit {
           }
 
         }
+        /* fill doctor data table */
         this.data = this.userServic.dataTable;
+
+        /* draw time line */
         var container = document.getElementById('visualization');
         var options = {
           groupOrder: 'content', // groupOrder can be a property name or a sorting function
@@ -97,17 +100,19 @@ export class AppointmentsComponent implements OnInit {
         };
         this.timeLine = new Vis.Timeline(container, items, groups, options);
 
-
       }
     );
 
 
   }
 
+
+  /* appoint doctor appointment component to make an appointment */
   onUserRowSelect(event: any) {
     this.openDialog(event);
   }
 
+  //setting of doctor-appointments dailog 
   openDialog(event: any): void {
     const dialogRef = this.dialog.open(DoctorAppointmentComponent, {
       width: '70%',
@@ -115,10 +120,7 @@ export class AppointmentsComponent implements OnInit {
       data: event
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log('The dialog was closed');
-      // this.name = result;
-    });
+   
   }
 
 

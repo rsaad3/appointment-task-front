@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  //authontication using login operation
   login(LoginInformation) {
     this.user.userName = this.form.value.userName;
     this.user.password = this.form.value.password;
