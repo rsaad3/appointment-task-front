@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
         this.invalidLogin = false;
       }, error => {
         this.invalidLogin = true;
+        alert(error.error.message)
         this.router.navigate(['/login'])
 
       }
